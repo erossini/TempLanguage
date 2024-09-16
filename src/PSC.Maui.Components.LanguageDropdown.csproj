@@ -1,0 +1,639 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<Title>Language Dropdown for MAUI</Title>
+		<Description>Component for MAUI to display a dropdown with languages. Include all the flags in SVG format and functions to get all language data.</Description>
+		<Copyright>Enrico Rossini - PureSourceCode.com</Copyright>
+		<PackageIcon></PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>maui, languages, flags, dropdown</PackageTags>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/erossini/MAUILanguageDropdown</RepositoryUrl>
+		<PackageProjectUrl>https://puresourcecode.com/dotnet/maui/language-dropdown-for-maui/</PackageProjectUrl>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ad.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ae.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_af.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ag.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ai.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_al.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_am.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ao.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_aq.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ar.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_arab.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_as.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_at.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_au.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_aw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ax.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_az.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ba.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bb.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bd.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_be.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bh.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bi.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bj.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bo.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bq.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_br.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bs.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bt.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bv.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_by.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_bz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ca.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cd.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cefta.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ch.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ci.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ck.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_co.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cp.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cv.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cx.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cy.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_cz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_de.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_dg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_dj.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_dk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_dm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_do.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_dz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_eac.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ec.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ee.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_eg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_eh.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_er.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_es.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_es_ct.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_es_ga.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_es_pv.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_et.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_eu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_fi.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_fj.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_fk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_fm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_fo.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_fr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ga.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gb.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gb_eng.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gb_nir.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gb_sct.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gb_wls.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gd.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ge.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gh.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gi.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gp.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gq.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gs.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gt.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_gy.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_hk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_hm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_hn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_hr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ht.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_hu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ic.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_id.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ie.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_il.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_im.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_in.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_io.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_iq.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ir.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_is.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_it.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_je.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_jm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_jo.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_jp.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ke.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_kg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_kh.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ki.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_km.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_kn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_kp.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_kr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_kw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ky.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_kz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_la.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_lb.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_lc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_li.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_lk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_lr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ls.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_lt.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_lu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_lv.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ly.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ma.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_md.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_me.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mh.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ml.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mo.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mp.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mq.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ms.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mt.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mv.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mx.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_my.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_mz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_na.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_nc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ne.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_nf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ng.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ni.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_nl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_no.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_np.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_nr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_nu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_nz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_om.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pa.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pe.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ph.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ps.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pt.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_pw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_py.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_qa.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_re.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ro.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_rs.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ru.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_rw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sa.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sb.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sd.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_se.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sh.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sh_ac.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sh_hl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sh_ta.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_si.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sj.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_so.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ss.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_st.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sv.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sx.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sy.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_sz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_td.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_th.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tj.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tl.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_to.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tr.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tt.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tv.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_tz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ua.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ug.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_um.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_un.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_us.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_uy.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_uz.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_va.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_vc.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ve.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_vg.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_vi.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_vn.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_vu.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_wf.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ws.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_xk.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_xx.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_ye.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_yt.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_za.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_zm.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\Flags\f_zw.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\nodata.svg" />
+		<None Pack="True" PackagePath="buildTransitive\" Include="Resources\Images\star.svg" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Remove="data.json" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Include="data.json" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ad.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ae.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_af.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ag.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ai.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_al.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_am.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ao.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_aq.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ar.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_arab.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_as.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_at.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_au.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_aw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ax.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_az.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ba.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bb.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bd.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_be.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bh.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bi.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bj.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bo.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bq.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_br.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bs.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bt.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bv.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_by.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_bz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ca.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cd.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cefta.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ch.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ci.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ck.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_co.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cp.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cv.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cx.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cy.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_cz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_de.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_dg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_dj.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_dk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_dm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_do.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_dz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_eac.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ec.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ee.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_eg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_eh.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_er.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_es.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_es_ct.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_es_ga.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_es_pv.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_et.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_eu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_fi.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_fj.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_fk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_fm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_fo.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_fr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ga.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gb.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gb_eng.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gb_nir.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gb_sct.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gb_wls.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gd.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ge.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gh.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gi.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gp.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gq.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gs.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gt.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_gy.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_hk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_hm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_hn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_hr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ht.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_hu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ic.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_id.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ie.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_il.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_im.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_in.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_io.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_iq.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ir.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_is.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_it.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_je.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_jm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_jo.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_jp.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ke.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_kg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_kh.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ki.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_km.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_kn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_kp.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_kr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_kw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ky.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_kz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_la.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_lb.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_lc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_li.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_lk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_lr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ls.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_lt.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_lu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_lv.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ly.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ma.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_md.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_me.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mh.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ml.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mo.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mp.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mq.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ms.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mt.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mv.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mx.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_my.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_mz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_na.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_nc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ne.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_nf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ng.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ni.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_nl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_no.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_np.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_nr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_nu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_nz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_om.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pa.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pe.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ph.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ps.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pt.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_pw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_py.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_qa.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_re.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ro.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_rs.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ru.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_rw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sa.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sb.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sd.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_se.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sh.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sh_ac.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sh_hl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sh_ta.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_si.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sj.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_so.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ss.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_st.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sv.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sx.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sy.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_sz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_td.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_th.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tj.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tl.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_to.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tr.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tt.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tv.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_tz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ua.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ug.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_um.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_un.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_us.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_uy.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_uz.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_va.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_vc.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ve.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_vg.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_vi.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_vn.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_vu.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_wf.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ws.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_xk.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_xx.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_ye.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_yt.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_za.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_zm.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\Flags\" Include="Resources\Images\Flags\f_zw.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\" Include="Resources\Images\nodata.svg" />
+		<MauiImage Pack="True" PackagePath="buildTransitive\Images\" Include="Resources\Images\star.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="LanguageDropdown.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="LanguagePicker.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Resources\Localizations\Strings.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Strings.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Localizations\Strings.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="psc_ico.ico">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+	  </None>
+	  <None Update="psc_logo.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Update="PSC.Maui.Components.LanguageDropdown.targets" Pack="True" PackagePath="buildTransitive\" />
+	</ItemGroup>
+
+</Project>
